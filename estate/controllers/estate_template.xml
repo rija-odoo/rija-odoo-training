@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <!-- For Practice  -->
+
+    <template id="index">
+        <t t-call="website.layout">
+            <t t-set="title">Estate Contoller</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-foreach="properties" t-as="Property">
+                        <p>
+                            <t t-esc="Property.name" />
+                        </p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- For Front Page Design  -->
+
+    <template id="front_page">
+        <style>
+            .property-image {
+            width: 350px;
+            height: 200px;
+            object-fit: cover;
+            border: 5px solid black;
+            border-radius: 5px;
+            }
+        </style>
+        <t t-call="website.layout">
+            <t t-set="title">Properties</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <h1 class="text-center mb-5">Our Properties</h1>
+                    <div class="date_picker" style="margin:0 1rem 0 1rem">
+                        <form>
+                            <label>Listed After: <input type="date" name="date"></input></label>
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <t t-foreach="properties" t-as="Property">
+                            <div class="col-lg-4 col-md-4 mb-2">
+                                <div class="card shadow border-50">
+                                    <img t-if="Property.image"
+                                        t-att-src="'data:image/jpg;base64,' + Property.image.decode('utf-8')"
+                                        class="property-image" alt="Property Image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title" t-esc="Property.name"></h5>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a t-attf-href="/properties/{{ Property.id }}"
+                                            class="btn btn-primary btn-block stretched-link">View
+                                            Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <div t-if="pager" class="o_portal_pager d-flex justify-content-center mt-3">
+                        <t t-call="website.pager">
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- For Next Page Of Details Of The Property -->
+
+    <template id="open_property_page">
+        <style>
+            .property-image {
+            border: 5px solid black;
+            padding: 5px;
+            border-radius: 5px;
+            }
+        </style>
+        <t t-call="website.layout">
+            <t t-set="title">Property Details</t>
+            <div class="oe_structure">
+                <div class="container mt-4">
+                    <t t-foreach="properties" t-as="Property">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img t-if="Property.image"
+                                        t-att-src="'data:image/jpg;base64,' + Property.image.decode('utf-8')"
+                                        class="property-image" alt="Property Image"></img>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 class="card-title">
+                                            <t t-esc="Property.name"></t>
+                                        </h2>
+                                        <p class="card-text">
+                                            <strong>Description:</strong>
+                                        </p>
+                                        <p class="card-text" style="white-space: pre-line;">
+                                            <t t-esc="Property.description"></t>
+                                        </p>
+                                        <hr>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <p>
+                                                        <strong>Seller Name:</strong>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <t t-esc="Property.seller_id.name"></t>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Total Area:</strong>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <t t-esc="Property.total_area"></t>
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p>
+                                                        <strong>Garden Orientation:</strong>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <t t-esc="Property.garden_orientation"></t>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Selling Price:</strong>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <t t-esc="Property.selling_price"></t>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
