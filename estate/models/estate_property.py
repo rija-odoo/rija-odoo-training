@@ -59,20 +59,19 @@ class EstateProperty(models.Model):
 
 # Function For Compute Total Area
 
+
     @api.depends("living_area", "garden_area")
     def _compute_total_area(self):
         for record in self:
             record.total_area = record.living_area + record.garden_area
 
-# Function For Compute Best Price
+# Function For Compute Best Price   
 
     @api.depends("offer_ids.price")
     def _compute_best_price(self):
         for record in self:
-            if (record.mapped('offer_ids.price')):
-                record.best_price = max(record.mapped('offer_ids.price'))
-            else:
-                record.best_price = 0
+            prices = [offer.price for offer in record.offer_ids if offer.price]
+            record.best_price = max(prices) if prices else 0
 
 # Function For Compute Graden
 
@@ -110,7 +109,7 @@ class EstateProperty(models.Model):
         for record in self:
             if (
                 not float_is_zero(record.selling_price, precision_digits=2)
-                and not float_is_zero(record.   expected_price, precision_digits=2)
+                and not float_is_zero(record.expected_price, precision_digits=2)
                 and float_compare(record.selling_price, 0.9 * record.expected_price, precision_digits=2) == -1
             ):
                 raise ValidationError(

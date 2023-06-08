@@ -56,9 +56,10 @@ class EstatePropertyOffer(models.Model):
 # Functions For Action Refused
 
     def action_refused(self):
-        self.status = "refused"
-        self.property_id.selling_price = 0
-        self.property_id.buyer_id = ""
+        for record in self:
+            self.status = "refused"
+            self.property_id.selling_price = 0
+            self.property_id.buyer_id = ""
 
 # Inheritance
 

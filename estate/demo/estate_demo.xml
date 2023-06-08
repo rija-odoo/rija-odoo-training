@@ -25,7 +25,7 @@
         <field name="description">A nice and big villa</field>
         <field name="postcode">12345</field>
         <field name="date_availability">2020-02-02</field>
-        <field name="expected_price">100</field>
+        <field name="expected_price">1000</field>
         <field name="bedrooms">6</field>
         <field name="living_area">100</field>
         <field name="facades">4</field>
@@ -70,7 +70,7 @@
         <field name="description">A house is very nice</field>
         <field name="postcode">98763</field>
         <field name="date_availability">2020-02-02</field>
-        <field name="expected_price">100</field>
+        <field name="expected_price">2000</field>
         <field name="bedrooms">2</field>
         <field name="living_area">900</field>
         <field name="facades">4</field>
@@ -85,7 +85,7 @@
         <field name="description">A big bungalow with a nice garden</field>
         <field name="postcode">84373</field>
         <field name="date_availability">2023-12-12</field>
-        <field name="expected_price">100</field>
+        <field name="expected_price">1000</field>
         <field name="bedrooms">9</field>
         <field name="living_area">789</field>
         <field name="facades">1</field>
@@ -100,19 +100,19 @@
 
     <record id="estate_big_villa_offer1" model="estate.property.offer">
         <field name="partner_id" ref="base.res_partner_2"></field>
-        <field name="price">100</field>
+        <field name="price">1100</field>
         <field name="validity">5</field>
         <field name="property_id" ref="estate_big_villa"></field>
     </record>
     <record id="estate_big_villa_offer2" model="estate.property.offer">
         <field name="partner_id" ref="base.res_partner_2"></field>
-        <field name="price">200</field>
+        <field name="price">2200</field>
         <field name="validity">6</field>
         <field name="property_id" ref="estate_big_villa"></field>
     </record>
     <record id="estate_big_villa_offer3" model="estate.property.offer">
         <field name="partner_id" ref="base.res_partner_12"></field>
-        <field name="price">1000</field>
+        <field name="price">3000</field>
         <field name="validity">3</field>
         <field name="property_id" ref="estate_big_villa"></field>
     </record>
@@ -149,8 +149,6 @@
             'price': 100,
             'validity' : 7,
         })]" />
-
     </record>
-
 
 </odoo>
